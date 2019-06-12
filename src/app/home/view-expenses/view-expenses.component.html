@@ -1,25 +1,29 @@
 <ion-header>
-    <ion-toolbar color="primary">
-      <ion-title>
-        Expense Planner
-      </ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Expense Planner
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
 
-  <ion-content>
-      <ion-grid>
-        <!-- add new expense -->
-        <ion-row>
-          <ion-col size-md="6" size-lg="6" offset-md="3" offset-lg="3">
-            <ion-list>
-              <ion-item *ngFor="let expense of expenses">
-                <ion-label>
-                  <h2>{{ expense.reason }}</h2>
-                  <p>{{ expense.amount }}</p>
-                </ion-label>
-              </ion-item>
-            </ion-list>
-          </ion-col>
-        </ion-row>
-    </ion-grid>
-  </ion-content>
+<ion-content>
+    <ion-grid>
+      <!-- add new expense -->
+      <ion-row>
+        <ion-col size-md="6" size-lg="6" offset-md="3" offset-lg="3">
+          <ion-list>
+            <ion-item *ngFor="let expense of expenses" href="." lines="full" detail>
+              <ion-ripple-effect></ion-ripple-effect>
+              <ion-label>
+                <h2>{{ expense.reason }}</h2>
+                <p>{{ expense.amount }}</p>
+              </ion-label>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+  </ion-grid>
+</ion-content>

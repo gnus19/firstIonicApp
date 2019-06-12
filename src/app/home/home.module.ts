@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 
 import { HomePage } from './home.page';
 import { ViewExpensesComponent } from './view-expenses/view-expenses.component';
+import { ExpenseDetailComponent } from './expense-detail/expense-detail.component';
 
 @NgModule({
   imports: [
@@ -14,18 +15,23 @@ import { ViewExpensesComponent } from './view-expenses/view-expenses.component';
     IonicModule,
     RouterModule.forChild([
       {
-        path: '',
+        path: 'add',
         component: HomePage
       },
       {
-        path: 'view',
+        path: '',
         component: ViewExpensesComponent
+      },
+      {
+        path: 'details',
+        component: ExpenseDetailComponent
       }
     ])
   ],
   declarations: [
     HomePage,
-    ViewExpensesComponent
+    ViewExpensesComponent,
+    ExpenseDetailComponent
   ]
 })
 export class HomePageModule {}

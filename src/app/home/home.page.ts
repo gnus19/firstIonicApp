@@ -11,15 +11,10 @@ import { AlertController } from '@ionic/angular';
 })
 export class HomePage {
 	text = "Defualt Text";
-	newExpense;
-	expenses = [
-		{reason: "Alguno", amount: 100},
-		{reason: "no se", amount: 200},
-		{reason: "Vaina", amount: 300},
-		{reason: "Locas", amount: 400}
-	];
+	private newExpense;
+	private expenses;
 
-	constructor(public alertController: AlertController) {}
+	constructor(public alertController: AlertController, public dbService: MemoryDBService) {}
 	
 	ngOnInit() {
 		this.newExpense = {
@@ -32,12 +27,6 @@ export class HomePage {
   	this.text = "You changed the text!"
   }
 
-  onSubmit() {
-		this.expenses.push(this.newExpense);
-		console.log("It work!");
-		
-	}
-
 	async presentAlertConfirm() {
 		const alert = await this.alertController.create({
 		  header: 'Confirmar datos',
@@ -48,16 +37,18 @@ export class HomePage {
 			  role: 'cancel',
 			  cssClass: 'secondary',
 			  handler: (blah) => {
-				console.log('Confirm Cancel: blah');
+					console.log('Confirm Cancel: blah');
 			  }
 			}, {
 			  text: 'Okay',
 			  handler: () => {
-				this.expenses.push(this.newExpense);
-				console.log("It work!");
+					this.dbService.addExpense(this.newExpense)
+					// this.dbService.addExpense(this.newExpense).then(() =>
+					// 	console.log(this.newExpense)
+					// );
+					// console.log("It work!");
 			  }
-			}
-		  ]
+			}]
 		});
 	
 		await alert.present();
